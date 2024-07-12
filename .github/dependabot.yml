@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: monthly
+  labels:
+  - dependencies
+  - github_actions
+  - type:maintenance
+  groups:
+    # create a single pull request containing all updates for GitHub Actions
+    github-actions:
+      patterns:
+      - '*'
