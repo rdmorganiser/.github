@@ -1,0 +1,73 @@
+# GitHub labels are generated automatically with GitHub Labeler
+# Ref: https://github.com/marketplace/actions/github-labeler
+
+- name: help wanted
+  color: '159818'
+
+# Dependencies
+- name: dependencies
+  description: Pull requests that update a dependency file
+  color: 0366d6
+- name: github_actions
+  description: Pull requests that update GitHub Actions code
+  color: '000000'
+- name: python
+  description: Pull requests that update Python code
+  color: 2b67c6
+- name: javascript
+  description: Pull requests that update Javascript code
+  color: '168700'
+- name: pre-commit
+  color: ededed
+
+# Effort
+- name: effort:huge
+  color: '000000'
+- name: effort:major
+  color: ff6700
+- name: effort:minor
+  color: ffc100
+- name: effort:moderate
+  color: ff9900
+
+# Priority
+- name: priority:critical
+  color: AE2609
+- name: priority:high
+  color: 006b75
+- name: priority:low
+  color: ffa500
+- name: priority:medium
+  color: f9d0c4
+
+# Status
+- name: status:acceptance
+  color: 006b75
+- name: status:agreed
+  color: BC58BB
+- name: status:done
+  color: '30E440'
+- name: status:hold
+  color: 0052cc
+- name: status:wontfix
+  color: '666666'
+- name: status:work-in-progress
+  color: 2943b5
+
+# Type
+- name: type:bug
+  color: fc2929
+- name: type:documentation
+  color: 1d76db
+- name: type:duplicate
+  color: cccccc
+- name: type:feature-request
+  color: 84f20e
+- name: type:maintenance
+  color: 5C7490
+- name: type:plugin
+  color: F5F904
+- name: type:question
+  color: cc317c
+- name: type:support
+  color: 1d76db
