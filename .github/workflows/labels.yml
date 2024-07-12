@@ -1,0 +1,25 @@
+name: Update Repository Labels
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - .github/labels.yml
+    - .github/workflows/labels.yml
+  workflow_dispatch: # run manually from actions tab
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: {} # Set permissions at the job level
+
+jobs:
+  update-labels:
+    permissions:
+      issues: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: crazy-max/ghaction-github-labeler@de749cf181958193cb7debf1a9c5bb28922f3e1b # v5.0.0
