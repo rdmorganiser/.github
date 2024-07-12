@@ -1,0 +1,33 @@
+# This is a reusable workflow.
+#
+# Usage: Use the workflow in calling workflows like this:
+# "uses: rdmorganiser/.github/.github/workflows/_lint.yml@main"
+# Pin it to a branch, tag or commit hash.
+#
+# Ref: https://docs.github.com/en/actions/using-workflows/reusing-workflows
+
+name: Lint
+
+on:
+  workflow_call: # reusable workflow
+
+permissions: {} # Set permissions at the job level
+
+env:
+  PYTHONDONTWRITEBYTECODE: 1
+  FORCE_COLOR: 1 # enforce colored output
+
+jobs:
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Run linters via pre-commit (e.g. typos)
+      uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+      with:
+        extra_args: --all-files --color=always

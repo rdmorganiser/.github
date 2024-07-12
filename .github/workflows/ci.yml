@@ -1,0 +1,19 @@
+name: Lint
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+  workflow_dispatch: # run manually from actions tab
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: {} # Set permissions at the job level
+
+jobs:
+
+  lint:
+    uses: ./.github/workflows/_lint.yml

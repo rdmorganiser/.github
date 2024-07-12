@@ -1,0 +1,38 @@
+# pre-commit
+# Ref: https://pre-commit.com/#usage
+# More hooks: https://pre-commit.com/hooks.html
+# ------------------------------------------------------------------------------
+
+repos:
+
+- repo: meta
+  hooks:
+  - id: check-hooks-apply
+
+  # Check all files for generic issues, e.g. trailing whitespace
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
+  hooks:
+  - id: check-yaml
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+
+  # Pretty-format YAML files
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.13.0
+  hooks:
+  - id: pretty-format-yaml
+    args: [--autofix, --indent, '2']
+
+  # Check JSON Schema
+- repo: https://github.com/python-jsonschema/check-jsonschema
+  rev: 0.29.0
+  hooks:
+  - id: check-dependabot
+  - id: check-github-workflows
+
+  # Check for typos
+- repo: https://github.com/crate-ci/typos
+  rev: v1.23.2
+  hooks:
+  - id: typos
