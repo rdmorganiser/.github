@@ -1,0 +1,38 @@
+name: 'Set up rdmo-app for testing'
+description: 'Checks out rdmo-app, installs rdmo, configures the app, and creates a superuser.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout rdmo-app
+      uses: actions/checkout@v6
+      with:
+        repository: rdmorganiser/rdmo-app
+        path: rdmo-app
+        persist-credentials: false
+
+    - name: Install rdmo
+      shell: bash
+      run: pip install rdmo
+
+    - name: Configure rdmo-app settings
+      shell: bash
+      working-directory: rdmo-app
+      run: |
+        cat >> config/settings/local.py <<'EOF'
+        DEBUG = True
+        ALLOWED_HOSTS = ['localhost']
+        SECRET_KEY = 'not a very secret key'
+        EOF
+
+    - name: Run migrations
+      shell: bash
+      working-directory: rdmo-app
+      run: ./manage.py migrate
+
+    - name: Create superuser
+      shell: bash
+      working-directory: rdmo-app
+      env:
+        DJANGO_SUPERUSER_PASSWORD: admin
+      run: ./manage.py createsuperuser --noinput --username admin --email admin@example.com
